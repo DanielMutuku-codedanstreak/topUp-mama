@@ -1,0 +1,125 @@
+<div class="form-container mat-elevation-z5">
+  <h1>Sign Up a New User!</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="name?.errors?.['required']">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email address" formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input id="password-field"
+        matInput
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        size="8"
+        maxlength="8"
+      />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password is required
+      </mat-error>
+
+      <div class="toggle-password">
+        <i class="fa fa-eye"></i>
+        <i class="fa fa-eye-slash"></i>
+      </div>
+      <div class="password-policies">
+        <div class="policy-length">
+          8 characters
+        </div>
+        <div class="policy-number">
+          contains number
+        </div>
+        <div class="policy-uppercase">
+          contains uppercase
+        </div>
+        <div class="policy-special">
+          contains special characters
+        </div>
+      </div>
+
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+      />
+      <mat-error *ngIf="confirmPassword?.errors?.['required']">
+        Confirm Password is required
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+        Passwords should match
+    </mat-error>
+    <div class="center margin-top">
+      <button type="submit" mat-raised-button color="primary">Sign Up!</button>
+    </div>
+  </form>
+</div>
+<script src="./sign-up.component.js"></script>
+<!--
+<script>
+  function _id(name){
+    return document.getElementById(name);
+  }
+  function _class(name){
+    return document.getElementsByClassName
+  }
+  _class("toggle-password")[0].addEventListener("click", function(){
+    _class("toggle-password")[0].classList.toggle(active);
+    if(_id("password-field").getAttribute("type") == "password"){
+      _id("password-field").setAttribute("type","text");
+    }else{
+      _id("password-field").setAttribute("type","password");
+    }
+  });
+
+  _id("password-field").addEventListener("focus", function(){
+    _class("password-policies")[0].classList.add("active");
+  });
+  _id("password-field").addEventListener("blur", function(){
+    _class("password-policies")[0].classList.remove("active");
+  });
+
+  _id("password-field").addEventListener("keyup", function(){
+    let password = _id("password.field").value;
+
+    if(/[A-Z]/.test(password)){
+      _class("policy-uppercase")[0].classList.add("active");
+    }else{
+      _class("policy-uppercase")[0].classList.remove("active");
+    }
+
+    if(/[0-9]/.test(password)){
+      _class("policy-number")[0].classList.add("active");
+    }else{
+      _class("policy-number")[0].classList.remove("active");
+    }
+
+    if(/[^A-Za-z0-9]/.test(password)){
+      _class("policy-special")[0].classList.add("active");
+    }else{
+      _class("policy-special")[0].classList.remove("active");
+    }
+
+    if(password.length > 7){
+      _class("policy-length")[0].classList.add("active");
+    }else{
+      _class("policy-length")[0].classList.remove("active");
+    }
+  });
+</script>
+
+-->
